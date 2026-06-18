@@ -360,4 +360,4 @@ conservative to avoid impacting others.
 
 - [Black Duck Website](https://www.blackduck.com/)
 - [Community Portal](https://community.blackduck.com)
-- [Email](support@blackduck.com)
+- [Email](mailto:support@blackduck.com)
