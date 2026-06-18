@@ -1,7 +1,7 @@
 # Black Duck SCA — MCP Server
 
 [![PyPI - Version](https://img.shields.io/pypi/v/blackduck-sca-mcp)](https://pypi.org/project/blackduck-sca-mcp/)
-[![PyPI - License](https://img.shields.io/pypi/l/blackduck-sca-mcp)](https://pypi.org/project/blackduck-sca-mcp/)
+[![PyPI - License](https://img.shields.io/pypi/l/blackduck-sca-mcp)](https://github.com/blackducksoftware/sca-mcp/blob/main/LICENSE)
 [![Website](https://img.shields.io/badge/website-https%3A%2F%2Fwww.blackduck.com-blue)](https://www.blackduck.com/)
 [![Email](https://img.shields.io/badge/email-support%40blackduck.com-green)](mailto:support@blackduck.com)
 
