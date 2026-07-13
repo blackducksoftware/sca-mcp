@@ -19,8 +19,9 @@ generate vulnerability reports and SBOMs.
 3. [Installation](#installation)
 4. [Security](#security)
 5. [Environment Variables](#environment-variables)
-6. [Troubleshooting](#troubleshooting)
-7. [Support](#support)
+6. [First Steps With The MCP](#first-steps-with-the-mcp)
+7. [Troubleshooting](#troubleshooting)
+8. [Support](#support)
 
 ## Capabilities
 
@@ -29,7 +30,7 @@ These are the MCP tool areas currently available.
 | Area | Available Features | Related Tool Names |
 |------|--------------------|--------------------|
 | Dashboard | View instance-wide security posture, activity trends, and vulnerability breakdowns | get_dashboard_summary |
-| Projects | Find projects and versions, inspect BOM contents, and review project-level vulnerabilities | search_projects_versions<br>fetch_project_components<br>fetch_project_vulnerabilities |
+| Projects | Find projects and versions, inspect BOM (Bill Of Materials) contents, and review project-level vulnerabilities | search_projects_versions<br>fetch_project_components<br>fetch_project_vulnerabilities<br>search_lts_projects_versions<br>fetch_lts_project_components |
 | Components | Search components across projects and see where specific versions are used | search_components |
 | Vulnerabilities | Search the global vulnerability dataset and update remediation/triage status | search_vulnerabilities<br>update_vulnerability_remediation |
 | Policies | Check policy violation status and compliance at project version level | fetch_policy_violation_status |
@@ -184,6 +185,86 @@ Available environment variables for configuring the MCP server:
 
 All three logging variables can also be set via CLI flags for the MCP command (`--log-level`, `--log-format`,
 `--log-file`), which take precedence over environment variables.
+
+
+## First Steps With The MCP
+
+To get started with the BDSCA MCP, you can ask the LLM some starter questions such as:
+
+```
+Am I connected to the BDSCA instance?
+What is the status of the BDSCA instance?
+```
+
+That kind of questions will trigger the LLM to return information about the MCP server version, BDSCA server version, related environment variables configured etc.
+
+You can then continue by asking for example:
+
+```
+Give me an overview of my BDSCA instance
+Give me an overview of my security posture
+```
+
+That kind of questions will trigger the LLM to return information about BDSCA instance's amount of Projects, Components, Vulnerabilities etc. and top security risks.
+
+The LLM will usually then suggest next steps on what Projects and Project Versions to drill into, or what Vulnerabilities should be prioritized to be remediated within which Project Versions.
+
+### Exploring Projects, Versions, and BOMs
+
+```
+Find the Project "my-project" and list its Project Versions
+Show me the BOM for my-project 1.4.0
+What Vulnerabilities affect my-project 1.4.0?
+```
+
+That kind of questions will trigger the LLM to return matching Projects, the BOM with License info per Component, and the Vulnerability breakdown per severity for the given Project Version.
+
+### Cross-project Component Lookup
+
+```
+Which Projects use the log4j-core 2.14.1?
+Search for Components matching "spring-boot"
+```
+
+That kind of questions will trigger the LLM to return all Projects and Project Versions using a given Component.
+
+### Vulnerability Search and Triage
+
+```
+Which of my Projects are affected by the CVE-2021-44228?
+```
+
+That kind of questions will trigger the LLM to return the CVE details and the list of the impacted Project Versions.
+
+Instructing the LLM to triage will fetch Project Vulnerabilities, and finally batch-apply a Remediation status like `NOT_AFFECTED`, `MITIGATED`, or `PATCHED` with the justification and comments.
+
+### Policy Compliance
+
+```
+What policy violations I have in my projects?
+Which policies does my-project 1.4.0 violate?
+```
+
+That kind of questions will trigger the LLM to return the compliance state and details of any violated Policy Rules for the given Project Version.
+
+### Scanning
+
+```
+Scan this <directory path> for Components and Vulnerabilities
+Scan this <file path> SBOM file / container image / binary
+```
+
+That kind of questions will trigger the LLM to scan the given file(s) and return results after the Scan has finished.
+
+### Reports
+
+```
+Generate an SBOM in CycloneDX format for my-project 1.4.0
+Create a VEX/CSAF document for my-project 1.4.0
+Export a Notices report for my-project 1.4.0
+```
+
+That kind of questions will trigger the LLM to create desired reports.
 
 
 ## Troubleshooting
