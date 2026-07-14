@@ -71,7 +71,6 @@ Add via UI and make sure the config file has similar values afterward.
     {
       "name": "blackduck-bdsca-mcp",
       "source": "user",
-      "transport": "stdio",
       "command": "/bin/uvx",
       "args": [
         "--managed-python",
@@ -352,16 +351,16 @@ tokens may be invalidated.
    `Missing scan access role. Required one of: GLOBAL_CODE_SCANNER, ...`
 2. Ask a Black Duck administrator to assign one of the required roles to the account
    associated with your API token. See the
-   [Role and Permission Matrix](https://documentation.blackduck.com/bundle/bd-hub/page/UsersAndGroups/RoleMatrix.html)
+   [Role and Permission Matrix](https://docs.blackduck.com/r/blackduck/latest/black-duck-documentation/black-duck-user-role-matrix.html)
    for the full list.
 
 Common role requirements:
 
-| Operation | Minimum required role |
-|-----------|----------------------|
-| Run scans | `GLOBAL_CODE_SCANNER`, `PROJECT_CODE_SCANNER`, or `PG_CODE_SCANNER` |
-| Create new projects | `PROJECT_CREATOR`, `FULL_ACCESS`, or `PG_MANAGER` |
-| Update vulnerability remediation | Write access to the project version |
+| Operation | Minimum required role (from smallest to largest permissions) |
+|-----------|--------------------------------------------------------------|
+| Run Scans | `Project Code Scanner` or `Project Group Code Scanner` or `Global Code Scanner` |
+| Create new Projects | `Project Administrator` or `Project Manager` or `Global Project Administrator` or `Global Project Manager` |
+| Update Vulnerability Remediation | `Project Manager` or `Global Project Manager` |
 
 ### Java not found (source scanning)
 
