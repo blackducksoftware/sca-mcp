@@ -178,10 +178,11 @@ Available environment variables for configuring the MCP server:
 |--------------------------------------------------------------------|---------------------|-------------------------------------------------------------------------|
 | `BLACKDUCK_BDSCA_URL`                                              | `https://localhost` | Base URL of the Black Duck BDSCA instance                               |
 | `BLACKDUCK_BDSCA_TOKEN`                                            | *(required)*        | API bearer token for BDSCA authentication                               |
-| `BLACKDUCK_BDSCA_SSL_VERIFY`                                       | `true`              | Whether to verify SSL/TLS certificates for BDSCA connections             |
+| `BLACKDUCK_BDSCA_SSL_VERIFY`                                       | `true`              | Whether to verify SSL/TLS certificates for BDSCA connections            |
 | `BLACKDUCK_BDSCA_LOG_LEVEL`                                        | `INFO`              | Logging level: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`          |
 | `BLACKDUCK_BDSCA_LOG_FORMAT`                                       | `colored`           | Log format: `colored`, `json`, `simple`                                 |
 | `BLACKDUCK_BDSCA_LOG_FILE`                                         | *(none)*            | Path to a log file (written in addition to stderr)                      |
+| `BLACKDUCK_MCP_ENABLE_RESOURCES_AS_TOOLS`                          | `false`             | Whether to expose a separate tool to access the MCP resources. This is a compatibility mode for the AI harnesses that don't implement the full MCP spec. |  
 
 All three logging variables can also be set via CLI flags for the MCP command (`--log-level`, `--log-format`,
 `--log-file`), which take precedence over environment variables.
@@ -324,6 +325,16 @@ version, registered tool and resource counts, all relevant environment variables
 (with tokens redacted), Java availability for source scanning, Detect JAR cache state,
 and a live connection test against the Black Duck instance. It is the quickest way to
 confirm that everything is configured and reachable before running any other tool.
+
+### Unable to access resources
+
+**Symptom.** MCP calls produce an error like 
+
+> "Fetched resource, but the following was an invalid URL: workflow-instructions://vulnerability-remediation"
+
+This is caused when the used AI harness is not able to use resources or templated resources provided by the MCP server. To work around that, 
+we can expose those resources as tools by specifying the `BLACKDUCK_MCP_ENABLE_RESOURCES_AS_TOOLS=true` environment variable.
+
 
 ### Token is wrong or expired
 
