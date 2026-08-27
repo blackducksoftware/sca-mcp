@@ -52,6 +52,8 @@ You can always check the full list of available tools by asking your AI assistan
 
 ### Claude Code
 
+#### MCP only
+
 ```bash
 claude mcp add blackduck-bdsca-mcp \
   --env BLACKDUCK_BDSCA_URL=https://<your-instance-url> \
@@ -60,6 +62,11 @@ claude mcp add blackduck-bdsca-mcp \
   --managed-python --python 3.13 \
   --from 'blackduck-sca-mcp' bdsca
 ```
+
+#### Plugin
+
+For Claude Code there is a plugin available that ships the MCP with specialized skills 
+and workflows. See installation instructions at https://github.com/blackducksoftware/sca-llm-plugin 
 
 ### Claude Desktop/Cowork
 
