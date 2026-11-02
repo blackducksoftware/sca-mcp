@@ -1,4 +1,4 @@
-# 0.11.0
+# 0.11.1
 - Add scan, triage, version override and report tools to the BDBA MCP server, plus resources for components, vendor components, licenses and CVEs, bringing it to feature parity with the BDSCA MCP server
 - Add BDBA `rescan_scan` and `download_scan_binary` tools, and give a clear next step when a scan is too old to be read through API v2
 - Add a `search_documentation` tool and a `docs-topic://` resource to both MCP servers, to answer how-to questions from the Black Duck documentation
